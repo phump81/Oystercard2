@@ -1,9 +1,9 @@
 require_relative '../lib/oystercard'
-max = 90
+max = 90.00
 describe Oystercard do
   it { is_expected.to be_an Oystercard }
   it { is_expected.to respond_to :top_up }
-  it { expect(subject.balance).to be_an(Integer) }
+  it { expect(subject.balance).to be_an(Float) }
   it { expect(Oystercard::MAXIMUM_BALANCE).to be(max) }
   it { expect(subject.maximum_balance).to be(max) }
 end
@@ -19,11 +19,34 @@ describe Oystercard do
     card = Oystercard.new
     expect{ card.top_up(100) }.to raise_error("Exceeded maximum balance: #{card.maximum_balance}")
   end
-  it 'deducts an amount from the balance' do
+  it 'deducts ten pounds from the balance' do
     subject.top_up(10)
-    expect(subject.deduct(10)).to eq(subject.balance)
+    expect{ subject.touch_out(10) }.to change{subject.balance}.by(-10.00)
   end
   it 'raises an error when there is not enough money' do
-    expect{ subject.deduct(1) }.to raise_error
+    expect{ subject.touch_out(10) }.to raise_error
+  end
+  it 'set the oystercard in use' do
+    card = Oystercard.new(1.00)
+    card.touch_in
+    expect(card.in_use).to eq(true)
+  end
+  it 'set the oystercard not in use' do
+    card = Oystercard.new(5.00)
+    card.touch_out
+    expect(card.in_use).to eq(false)
+    expect{ card.touch_out }.to change{card.balance}.by(-1.00)
+  end
+  
+end
+
+describe Oystercard do
+  it 'tells us if in use' do
+    card = Oystercard.new(1.99)
+    expect(card.touch_in).to be card.in_journey?
+  end
+  it 'does not allow a balance under one pound' do
+    card = Oystercard.new(0.99)
+    expect{ card.touch_in }.to raise_error 'Insufficient balance'
   end
 end
