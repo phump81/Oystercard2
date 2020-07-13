@@ -1,0 +1,65 @@
+{
+  "RSpec": {
+    "coverage": {
+      "C:/Users/Danie/Desktop/Makers/OysterCards/spec/oystercard_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          2,
+          null,
+          1,
+          1,
+          2,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "C:/Users/Danie/Desktop/Makers/OysterCards/lib/oystercard.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          9,
+          null,
+          null,
+          1,
+          null,
+          3,
+          null,
+          2,
+          null,
+          1,
+          2,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1594652362
+  }
+}
