@@ -1,19 +1,22 @@
-require_relative 'oystercard'
+require 'oystercard'
 
 class Journey
 
-  attr_reader :trips, :entry_station, :exit_station
+  attr_reader  :entry_station
 
-  def initialize(first_station)
+  def initialize(first_station = nil)
     @entry_station = first_station
   end
 
-  def end_journey(exit_station)
-    @exit_station = exit_station
-    trip = {entry: @entry_station,
-    exit: @exit_station}
-    @trips << trip
-    @entry_station = nil
+  def fare
+    -Oystercard::MINIMUM_BALANCE
+  end
+
+
+
+
+
+  def show
   end
 
 end
